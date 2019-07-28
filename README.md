@@ -19,3 +19,7 @@ Here some feature of the app:
 - Install the dependecies (`npm install`)
 - Run `npm start` from the project root
 - Enjoy!
+
+## If you want run the app without installation
+
+Got to the [link](http://stereotyped-measure.surge.sh/)
