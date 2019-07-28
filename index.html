@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="src/css/style.css" />
+    <title>Kill a Monster</title>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="text-center">
+            <img
+              style="width: 450px;"
+              src="src/images/logo.png"
+              class="img-fluid"
+              alt="Logo"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="character-tab" class="col-sm text-center">
+          <img src="src/images/hero.jpg" alt="Hero" />
+          <div class="life-bar">
+            <div :style="heroLifeStatus">
+              <span>{{ hero.hp > 0 ? hero.hp : "" }}</span>
+            </div>
+          </div>
+        </div>
+        <div id="character-tab" class="col-sm text-center">
+          <img src="src/images/monster.jpg" alt="Monster" />
+          <div class="life-bar">
+            <div :style="monsterLifeStatus">
+              <span>{{ monster.hp > 0 ? monster.hp : "" }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row shadow">
+        <div style="padding: 1.5em;" class="col-sm text-center">
+          <template v-if="new_game">
+            <button @click="round('attack')" class="btn btn-danger">
+              ATTACK
+            </button>
+            <button @click="round('special_attack')" class="btn btn-warning">
+              SPECIAL ATTACK
+            </button>
+            <button @click="round('heal')" class="btn btn-primary">
+              HEAL
+            </button>
+            <button @click="setGame" class="btn btn-light">
+              GIVE UP
+            </button>
+          </template>
+          <template v-else>
+            <button @click="setGame" class="btn btn-success">
+              START NEW GAME
+            </button>
+          </template>
+        </div>
+      </div>
+      <div
+        style="margin: 1em 0; padding: 1em 0;"
+        v-if="logs.length > 0"
+        id="log"
+        class="row shadow text-center"
+      >
+        <div class="col-sm">
+          <div v-for="log in logs">
+            <p v-if="log.character === 'hero'" class="log-hero">
+              {{ log.message }}
+            </p>
+            <p v-else class="log-monster">{{ log.message }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="src/js/app.js"></script>
+  </body>
+</html>
